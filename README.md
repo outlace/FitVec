@@ -33,6 +33,7 @@ it is called in this form: `costFunction(*args, optimal_params)`
 
 #### Example using an XOR neural network
 
+```python
 import numpy as np
 import math
 import FitVec as fv
@@ -62,6 +63,7 @@ def demoRun():
 	print("Optimal theta: \n%s\n" % (np.round(runForward(X, optimal_theta.reshape(13,1)), 2)))
 	print("Cost: %s\n" % (costFunction(X, y, optimal_theta.reshape(13,1))))
 demoRun()
+```
 
 Output:
 ```
