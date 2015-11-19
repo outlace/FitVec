@@ -1,14 +1,15 @@
 import random as rn, numpy as np
-# [Initial population size, mutation rate (=1%), num generations (30), solution length (13), # winners/per gen]
-def evolveParams(costFunction, params):
+# [Initial population size, mutation rate (=1%), num generations
+def evolveParams(costFunction, vecLength, params=(100,0.01,100), *args):
 	#initPop, mutRate, numGen, solLen, numWin = 100, 0.01, 500, 17, 20
-	initPop, mutRate, numGen, solLen = params
+	initPop, mutRate, numGen = params
+	solLen = vecLength
 	numWin = int(0.10 * initPop)
 	curPop = np.random.choice(np.arange(-15,15,step=0.01),size=(initPop, solLen),replace=False)
 	nextPop = np.zeros((curPop.shape[0], curPop.shape[1]))
 	fitVec = np.zeros((initPop, 2))
 	for i in range(numGen):
-		fitVec = np.array([np.array([x, np.sum(costFunction(X, y, curPop[x].T))]) for x in range(initPop)])
+		fitVec = np.array([np.array([x, np.sum(costFunction(*args, curPop[x].T))]) for x in range(initPop)])
 		winners = np.zeros((numWin, solLen))
 		for n in range(len(winners)):
 			selected = np.random.choice(range(len(fitVec)), numWin/2, replace=False)
@@ -25,6 +26,6 @@ def evolveParams(costFunction, params):
 		nextPop = np.multiply(nextPop, np.matrix(mutMatrix).reshape(nextPop.shape))
 		curPop = nextPop
 	best_soln = curPop[np.argmin(fitVec[:,1])]
-	print("Best Sol'n:\n%s\nCost:%s" % (best_soln,np.sum(costFunction(X, y, best_soln.T))))
+	print("Best Sol'n:\n%s\nCost:%s" % (best_soln,np.sum(costFunction(*args, best_soln.T))))
 
 	return best_soln
