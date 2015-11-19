@@ -7,6 +7,12 @@ You can use FitVec to "evolve" a vector of parameters that optimizes a function.
 This was originally made specifically for optimizing the weights of a neural network,
 however, it should be useful in a broad spectrum of optimization problems.
 
+#### Installation
+There's no installer yet, but it's a single Python function in a single Python file so for now
+just include the file in your project directory and import it.
+
+#### How to use
+
 The library consists of a single function, `evolveParams`, that expects a
 function to minimize (e.g. a cost function), the vector length,some optional hyperparameters and any
 additional parameters the supplied cost function needs (e.g. training data).
@@ -49,7 +55,7 @@ def runForward(X, theta):
 	h1_bias = np.insert(h1, 3, [1,1,1,1], axis=1)
 	output = sigmoid(np.dot(h1_bias, theta2))
 	return output
-	#4x3 * 3x1 = 4x1
+
 def costFunction(X, y, theta):
 	m = float(len(X))
 	hThetaX = np.array(runForward(X, theta))
