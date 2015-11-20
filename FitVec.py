@@ -5,7 +5,9 @@ def evolveParams(costFunction, vecLength, params=(100,0.01,100), *args):
 	initPop, mutRate, numGen = params
 	solLen = vecLength
 	numWin = int(0.10 * initPop)
-	curPop = np.random.choice(np.arange(-15,15,step=0.01),size=(initPop, solLen),replace=False)
+	step = 0.01
+	bounds = (initPop * solLen) * step * 2
+	curPop = np.random.choice(np.arange(-1*bounds,bounds,step=step),size=(initPop, solLen),replace=False)
 	nextPop = np.zeros((curPop.shape[0], curPop.shape[1]))
 	fitVec = np.zeros((initPop, 2))
 	for i in range(numGen):
