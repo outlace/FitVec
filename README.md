@@ -94,3 +94,8 @@ Optimal theta:
 
 Cost: 0.00377452533293
 ```
+
+#### Roadmap
+
+- Improve performance (GPU?)
+- Additional options: e.g. graphing of cost
