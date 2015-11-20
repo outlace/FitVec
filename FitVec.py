@@ -24,7 +24,7 @@ def evolveParams(costFunction, vecLength, params=(100,0.01,100), *args):
 			duplicWin[:, x] = np.random.permutation(duplicWin[:, x])
 		nextPop[len(winners):] = np.matrix(duplicWin)
 		num_mut_els = nextPop.size * mutRate
-		mutated_elements = np.random.random_integers(0, num_mut_els, size=(num_mut_els,))
+		mutated_elements = np.random.random_integers(0, (nextPop.size-1), size=(num_mut_els,))
 		for z in mutated_elements:
 			nextPop.flat[z] = nextPop.flat[z] * np.float(np.random.normal(0,2,1))
 		curPop = nextPop
