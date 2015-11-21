@@ -6,6 +6,8 @@ A simple numpy-based genetic algorithm library for function parameter optimizati
 You can use FitVec to "evolve" a vector of parameters that optimizes a function.
 This was originally made specifically for optimizing the weights of a neural network,
 however, it should be useful in a broad spectrum of optimization problems.
+It only runs on the CPU for now and is practical if the number of parameters to be optimized
+is less than ~1000 (of course this depends on the power of your machine and the size of your training data).
 
 #### Installation
 There's no installer yet, but it's a single Python function in a single Python file so for now
