@@ -1,5 +1,25 @@
 import random as rn, numpy as np
 def evolveParams(costFunction, vecLength, params=(100,0.01,100), *args):
+
+	def recombineVectors(arr):
+	    #arr is a 2-dimensional array of vectors
+	    #Steps:
+	    # 1. Choose first pair of vectors: indices 0, 1
+	    # 2. Pick random "cut point" along length of vector
+	    # 3. Swap corresponding vector subsets; move on to second pair of vectors, indices: 2,3
+	    resultVec = np.zeros(arr.shape)
+	    arrLen = int((arr.shape[0]/2))
+	    for i in range(arrLen):
+	        x = 2*i;
+			a = arr[x]
+	        b = arr[x+1]
+	        cutPt = np.random.randint(len(a))
+	        new_a = np.concatenate((a[0:cutPt], b[cutPt:]))
+	        new_b = np.concatenate((b[0:cutPt], a[cutPt:]))
+	        resultVec[x] = new_a
+	        resultVec[x+1] = new_b
+	    return resultVec
+
 	initPop, mutRate, numGen = params
 	solLen = vecLength
 	numWin = int(0.10 * initPop)
